@@ -8,6 +8,7 @@ public static class ServiceCollectionExtension
 {
     public static void RegisterServices(this IServiceCollection services)
     {
+        services.AddTransient<IAnimalRepository, AnimalRespository>();
         services.AddTransient<IUnitOfWork, UnitOfWork>();
     }
 }
