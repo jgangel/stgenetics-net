@@ -17,7 +17,7 @@
             BirthDate = @BirthDate, 
             Sex = @Sex, 
             Price = @Price, 
-            Status = @Status,
+            Status = @Status
         WHERE AnimalId = @AnimalId";
 
         public static string Delete => "DELETE FROM Animal WHERE AnimalId = @AnimalId";
