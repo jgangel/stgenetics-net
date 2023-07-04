@@ -1,6 +1,6 @@
-﻿using Stgen.Application.Repository;
+﻿using Microsoft.Extensions.Configuration;
+using Stgen.Application.Repository;
 using Stgen.Infrastructure.Repository;
-using Microsoft.Extensions.Configuration;
 
 namespace Stgen.Test.Util
 {
@@ -8,11 +8,13 @@ namespace Stgen.Test.Util
     {
         public static IUnitOfWork Create(IConfiguration configuration)
         {
-            return new UnitOfWork();
+            var animals = new AnimalRespository(configuration);
+            return new UnitOfWork(animals);
         }
         public static IUnitOfWork CreateMock(IConfiguration configuration)
         {
-            return new UnitOfWork();
+            var animals = new AnimalRespository(configuration);
+            return new UnitOfWork(animals);
         }
     }
 }

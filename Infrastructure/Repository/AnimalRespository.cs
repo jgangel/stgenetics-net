@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Extensions.Configuration;
 using Stgen.Application.Query;
 using Stgen.Application.Repository;
 using Stgen.Domain.Entities;
-using Stgen.Domain.Enums;
 using Stgen.Sql.Queries;
 
 namespace Stgen.Infrastructure.Repository

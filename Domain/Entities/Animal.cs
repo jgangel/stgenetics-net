@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Stgen.Domain.Enums;
+﻿using Stgen.Domain.Enums;
 
 namespace Stgen.Domain.Entities
 {
