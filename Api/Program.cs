@@ -39,6 +39,7 @@ builder.Services.AddSwaggerGen(setup =>
 });
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>();
 builder.Services.RegisterServices();
+builder.Services.RegisterHandlers();
 builder.Services.AddControllers();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

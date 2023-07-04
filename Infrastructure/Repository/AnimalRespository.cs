@@ -2,9 +2,9 @@
 using System.Data.SqlClient;
 using Dapper;
 using Microsoft.Extensions.Configuration;
-using Stgen.Application.Query;
-using Stgen.Application.Repository;
+using Stgen.Domain.Dto;
 using Stgen.Domain.Entities;
+using Stgen.Domain.Repository;
 using Stgen.Sql.Queries;
 
 namespace Stgen.Infrastructure.Repository

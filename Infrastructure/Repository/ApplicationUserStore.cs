@@ -3,11 +3,11 @@ using Dapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Stgen.Domain.Entities;
+using Stgen.Domain.Repository;
 
 namespace Stgen.Infrastructure.Repository
 {
-    public class ApplicationUserStore : IUserStore<ApplicationUser>, IUserEmailStore<ApplicationUser>, IUserPhoneNumberStore<ApplicationUser>,
-        IUserTwoFactorStore<ApplicationUser>, IUserPasswordStore<ApplicationUser>
+    public class ApplicationUserStore : IApplicationUserStore
     {
         private readonly string _connectionString;
 

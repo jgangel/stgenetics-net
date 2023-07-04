@@ -9,6 +9,9 @@ namespace Stgen.Api.Auth
 {
     public class TokenService : ITokenService
     {
+        public const string ClaimId = "uid";
+        public const string ClaimName = "name";
+
         private readonly IConfiguration _configuration;
         public TokenService(IConfiguration configuration)
         {
@@ -46,9 +49,9 @@ namespace Stgen.Api.Auth
                     new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]!),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString(CultureInfo.InvariantCulture)),
-                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                    new Claim(ClaimTypes.Name, user.UserName!),
-                    new Claim(ClaimTypes.Email, user.Email!)
+                    new Claim(ClaimId, user.Id.ToString()),
+                    new Claim(ClaimName, user.UserName!),
+                    new Claim(JwtRegisteredClaimNames.Email, user.Email!)
                 };
                 return claims;
             }

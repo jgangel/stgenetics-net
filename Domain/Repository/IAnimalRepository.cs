@@ -1,7 +1,7 @@
-﻿using Stgen.Application.Query;
+﻿using Stgen.Domain.Dto;
 using Stgen.Domain.Entities;
 
-namespace Stgen.Application.Repository;
+namespace Stgen.Domain.Repository;
 
 public interface IAnimalRepository : IRepository<Animal>
 {

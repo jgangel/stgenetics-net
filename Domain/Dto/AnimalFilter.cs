@@ -1,6 +1,6 @@
 ﻿using Stgen.Domain.Enums;
 
-namespace Stgen.Application.Query
+namespace Stgen.Domain.Dto
 {
     public class AnimalFilter
     {

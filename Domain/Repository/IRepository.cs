@@ -1,4 +1,4 @@
-﻿namespace Stgen.Application.Repository;
+﻿namespace Stgen.Domain.Repository;
 
 public interface IRepository<T>
 {

@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Stgen.Application.Query;
-using Stgen.Application.Repository;
+using Stgen.Api.Auth;
+using Stgen.Application.Command;
+using Stgen.Domain.Dto;
 using Stgen.Domain.Entities;
+using Stgen.Domain.Repository;
 
 namespace Stgen.Api.Controller
 {
@@ -11,10 +13,12 @@ namespace Stgen.Api.Controller
     public class AnimalController : BaseApiController
     {
         private readonly IUnitOfWork _unitOfWork;
-        public AnimalController(IUnitOfWork unitOfWork, ILogger<AnimalController> logger)
+        private readonly IOrderAnimalHandler _orderHandler;
+        public AnimalController(IUnitOfWork unitOfWork, ILogger<AnimalController> logger, IOrderAnimalHandler orderHandler)
         {
             _unitOfWork = unitOfWork;
             _logger = logger;
+            _orderHandler = orderHandler;
         }
 
         [HttpPost]
@@ -39,6 +43,14 @@ namespace Stgen.Api.Controller
         public async Task<ActionResult<IEnumerable<Animal>>> Filter([FromQuery] AnimalFilter animal)
         {
             return await HandleHttpCode(() => _unitOfWork.Animals.Filter(animal));
+        }
+
+        [HttpPost]
+        [Route("order")]
+        public async Task<ActionResult<OrderAnimalResult>> Order(int animalId)
+        {
+            var order = new OrderAnimal { UserId = User.FindFirst(TokenService.ClaimId)!.Value, AnimalId = animalId };
+            return await HandleHttpCode(() => _orderHandler.Handle(order));
         }
     }
 }

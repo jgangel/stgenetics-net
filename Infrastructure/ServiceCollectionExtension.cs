@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using Stgen.Application.Repository;
 using Stgen.Domain.Entities;
+using Stgen.Domain.Repository;
 using Stgen.Infrastructure.Repository;
 
 namespace Stgen.Infrastructure;
@@ -14,6 +14,8 @@ public static class ServiceCollectionExtension
         services.AddTransient<IRoleStore<ApplicationRole>, ApplicationRoleStore>();
 
         services.AddTransient<IAnimalRepository, AnimalRespository>();
+        services.AddTransient<IApplicationUserStore, ApplicationUserStore>();
+        services.AddTransient<IPurchaseRepository, PurchaseRepository>();
         services.AddTransient<IUnitOfWork, UnitOfWork>();
     }
 }
