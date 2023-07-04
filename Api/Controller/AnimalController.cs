@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Stgen.Application.Query;
 using Stgen.Application.Repository;
 using Stgen.Domain.Entities;
@@ -6,17 +7,18 @@ using Stgen.Domain.Entities;
 namespace Stgen.Api.Controller
 {
     [Route("animal")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class AnimalController : BaseApiController
     {
         private readonly IUnitOfWork _unitOfWork;
-        public AnimalController(IUnitOfWork unitOfWork, ILogger<AnimalController> logger) 
+        public AnimalController(IUnitOfWork unitOfWork, ILogger<AnimalController> logger)
         {
             _unitOfWork = unitOfWork;
             _logger = logger;
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> Create(Animal animal) 
+        public async Task<ActionResult<int>> Create(Animal animal)
         {
             return await HandleHttpCode(() => _unitOfWork.Animals.Add(animal));
         }
