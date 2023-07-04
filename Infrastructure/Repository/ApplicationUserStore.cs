@@ -51,24 +51,20 @@ namespace Stgen.Infrastructure.Repository
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                await connection.OpenAsync(cancellationToken);
-                return await connection.QuerySingleOrDefaultAsync<ApplicationUser>($@"SELECT * FROM [ApplicationUser]
+            using var connection = new SqlConnection(_connectionString);
+            await connection.OpenAsync(cancellationToken);
+            return await connection.QuerySingleOrDefaultAsync<ApplicationUser>($@"SELECT * FROM [ApplicationUser]
                 WHERE [Id] = @{nameof(userId)}", new { userId })!;
-            }
         }
 
         public async Task<ApplicationUser?> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                await connection.OpenAsync(cancellationToken);
-                return await connection.QuerySingleOrDefaultAsync<ApplicationUser>($@"SELECT * FROM [ApplicationUser]
+            using var connection = new SqlConnection(_connectionString);
+            await connection.OpenAsync(cancellationToken);
+            return await connection.QuerySingleOrDefaultAsync<ApplicationUser>($@"SELECT * FROM [ApplicationUser]
                 WHERE [NormalizedUserName] = @{nameof(normalizedUserName)}", new { normalizedUserName });
-            }
         }
 
         public Task<string?> GetNormalizedUserNameAsync(ApplicationUser user, CancellationToken cancellationToken)
@@ -147,12 +143,10 @@ namespace Stgen.Infrastructure.Repository
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                await connection.OpenAsync(cancellationToken);
-                return await connection.QuerySingleOrDefaultAsync<ApplicationUser>($@"SELECT * FROM [ApplicationUser]
+            using var connection = new SqlConnection(_connectionString);
+            await connection.OpenAsync(cancellationToken);
+            return await connection.QuerySingleOrDefaultAsync<ApplicationUser>($@"SELECT * FROM [ApplicationUser]
                 WHERE [NormalizedEmail] = @{nameof(normalizedEmail)}", new { normalizedEmail });
-            }
         }
 
         public Task<string?> GetNormalizedEmailAsync(ApplicationUser? user, CancellationToken cancellationToken)
